@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f09ec9d0-b09f-434e-9352-bd2c73fc565e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sMADONHANG" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT        dbo.CHITIETDATHANG.MADONHANG, dbo.CHITIETDATHANG.MAHANG, dbo.CHITIETDATHANG.SOLUONG, dbo.CHITIETDATHANG.MANCC, dbo.DATHANG.NGAYDATHANG, dbo.HANGHOA.TENHANG, dbo.NHACC.TENNCC
+FROM            dbo.CHITIETDATHANG INNER JOIN
+                         dbo.DATHANG ON dbo.CHITIETDATHANG.MADONHANG = dbo.DATHANG.MADONHANG INNER JOIN
+                         dbo.HANGHOA ON dbo.CHITIETDATHANG.MAHANG = dbo.HANGHOA.MAHANG INNER JOIN
+                         dbo.NHACC ON dbo.CHITIETDATHANG.MANCC = dbo.NHACC.MANCC AND dbo.HANGHOA.MANCC = dbo.NHACC.MANCC
+where dbo.DATHANG.MADONHANG=$P{sMADONHANG}]]>
+	</queryString>
+	<field name="MADONHANG" class="java.lang.String"/>
+	<field name="MAHANG" class="java.lang.Integer"/>
+	<field name="MANCC" class="java.lang.Integer"/>
+	<field name="SOLUONG" class="java.lang.Integer"/>
+	<field name="NGAYDATHANG" class="java.lang.String"/>
+	<field name="TENHANG" class="java.lang.String"/>
+	<field name="TENNCC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="15" width="362" height="31" uuid="755a2d73-706c-4b91-a84e-adf152678fbb"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DANH SÁCH ĐƠN ĐẶT HÀNG]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="12" width="100" height="20" uuid="411da3a1-64d1-4b7f-ac9e-78a47c701564"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã đơn hàng:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="6" width="100" height="20" uuid="65099b9e-15d0-4053-92e4-97af7d0b4d19"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày bán:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="12" width="100" height="20" uuid="8b85c69c-6263-4fd4-856a-5deac54758a9"/>
+				<textFieldExpression><![CDATA[$F{MADONHANG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="12" width="100" height="20" uuid="9d9e1f98-14f0-4f44-972f-2672079dce07"/>
+				<textFieldExpression><![CDATA[$F{NGAYDATHANG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="2" width="100" height="20" uuid="f7df31ed-36d3-468d-b268-98e415670fef"/>
+				<text><![CDATA[SOLUONG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="2" width="100" height="20" uuid="be8a77ef-f1f9-42fa-9e14-ef65f932a9c5"/>
+				<text><![CDATA[MANCC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="2" width="100" height="20" uuid="1cd43cbf-9c89-4836-b141-419951ff52cb"/>
+				<text><![CDATA[TENHANG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="2" width="100" height="20" uuid="4b1b28e9-cee8-4cb9-a1ed-4af8102d0bff"/>
+				<text><![CDATA[TENNCC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="2" width="100" height="20" uuid="63518345-bd0b-4a78-9ee2-ecb1db105059"/>
+				<text><![CDATA[MAHANG]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="222" y="27" width="100" height="20" uuid="92049563-4081-4cb2-924d-ced494ae1c28"/>
+				<textFieldExpression><![CDATA[$F{SOLUONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="27" width="100" height="20" uuid="88f72291-d5f2-4f6f-a992-f9a720229ff2"/>
+				<textFieldExpression><![CDATA[$F{MANCC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="27" width="100" height="20" uuid="33d2e4e6-f1a1-4fc9-a667-2ddc09afc4b1"/>
+				<textFieldExpression><![CDATA[$F{TENHANG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="27" width="100" height="20" uuid="d52e60f5-a9fd-4677-b515-f7a825071210"/>
+				<textFieldExpression><![CDATA[$F{TENNCC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="27" width="100" height="20" uuid="0d9e69d4-bf0d-4b33-97ae-18824d5be013"/>
+				<textFieldExpression><![CDATA[$F{MAHANG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
